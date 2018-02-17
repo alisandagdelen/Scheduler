@@ -25,6 +25,7 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     
     var schedule: Schedule {
         didSet {
+            //TODO
             beginDate.value = schedule.beginDate
             endDate.value = schedule.endDate
             frequency.value = schedule.frequency
@@ -53,6 +54,7 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     }
     
     func updateBeginDate(_ beginDate:Date) {
+        controlEndDate(beginDate: beginDate, frequency: schedule.frequency)
         schedule.beginDate = beginDate
     }
     
@@ -61,12 +63,15 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     }
     
     func updateFrequency(_ frequency:Frequency) {
+        controlEndDate(beginDate: schedule.beginDate, frequency: frequency)
         schedule.frequency = frequency
     }
     
     private func controlEndDate(beginDate:Date, frequency:Frequency) {
         if beginDate != schedule.beginDate || frequency != schedule.frequency {
-            
+            if schedule.endDate.timeIntervalSince(earliestBeginDate) < 0 {
+                schedule.endDate = earliestEndDate.value
+            }
         }
     }
     
