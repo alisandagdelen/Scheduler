@@ -10,6 +10,8 @@ import UIKit
 
 class ScheduleVC: UIViewController {
     
+    var stackView: UIStackView!
+    
     var viewBeginDate: ViewTitleWithDetail!
     var viewEndDate: ViewTitleWithDetail!
     var viewFrequency: ViewTitleWithDetail!
@@ -49,31 +51,56 @@ class ScheduleVC: UIViewController {
         
     }
     
+    @objc func beginDatePickerValueChanged(_ sender:UIDatePicker) {
+        scheduleViewModel?.updateBeginDate(sender.date)
+    }
+    
 }
+
+// ViewController's UI created programmaticly
 
 extension ScheduleVC {
     
     func setupUI() {
         
+        setupViews()
+        setupPickers()
+        setupStackView()
+        hideAllPickers()
+        setupConstraints()
+        view.backgroundColor = UIColor.white
+    }
+    
+    func setupViews() {
         viewBeginDate = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
         viewFrequency = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
         viewEndDate = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
-        datePickerBegin = UIDatePicker()
-        datePickerEnd = UIDatePicker()
-        pickerFrequency = UIPickerView()
-        
         viewBeginDate.lblTitle.text = "Begin:"
         viewFrequency.lblTitle.text = "Frequency:"
         viewEndDate.lblTitle.text = "End:"
-        
-        let stackView = UIStackView(arrangedSubviews: [viewBeginDate, datePickerBegin, viewFrequency, pickerFrequency, viewEndDate, datePickerEnd])
+    }
+    
+    func setupStackView() {
+        stackView = UIStackView(arrangedSubviews: [viewBeginDate, datePickerBegin, viewFrequency, pickerFrequency, viewEndDate, datePickerEnd])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         
         view.addSubview(stackView)
-        hideAllPickers()
+    }
+    
+    func setupPickers() {
+        datePickerBegin = UIDatePicker()
+        datePickerEnd = UIDatePicker()
+        pickerFrequency = UIPickerView()
         
+        datePickerBegin.addTarget(self, action: #selector(beginDatePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
+        
+        datePickerBegin.datePickerMode = .date
+        datePickerEnd.datePickerMode = .date
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.topAnchor),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -83,14 +110,12 @@ extension ScheduleVC {
             viewFrequency.heightAnchor.constraint(equalToConstant: 75),
             datePickerBegin.heightAnchor.constraint(equalToConstant: 135),
             datePickerEnd.heightAnchor.constraint(equalToConstant: 135),
-            pickerFrequency.heightAnchor.constraint(equalToConstant: 135),
+            pickerFrequency.heightAnchor.constraint(equalToConstant: 135)
             ])
-        view.backgroundColor = UIColor.white
-        
     }
     
     func hideAllPickers() {
-        datePickerBegin.isHidden = true
+        //        datePickerBegin.isHidden = true
         datePickerEnd.isHidden = true
         pickerFrequency.isHidden = true
     }
