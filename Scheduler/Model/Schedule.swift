@@ -13,9 +13,18 @@ enum Frequency: Int {
     case daily = 1
     case weekly = 7
     case monthly = 30
+    
+    var description: String {
+        switch self {
+        case .once     : return "Once"
+        case .daily    : return "Daily"
+        case .weekly   : return "Weekly"
+        case .monthly  : return "Monthly"
+        }
+    }
 }
 
-class Schedule: NSObject {
+struct Schedule {
     let id:String
     var beginDate: Date
     var endDate: Date
