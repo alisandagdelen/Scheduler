@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum Frequency {
-    case once
-    case daily
-    case weekly
-    case monthly
+enum Frequency: Int {
+    case once = 0
+    case daily = 1
+    case weekly = 7
+    case monthly = 30
 }
 
 class Schedule: NSObject {
