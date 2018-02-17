@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bZR-en-9vU" customClass="ViewTitleWithDetail" customModule="Scheduler" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRO-iY-pa8">
+                    <rect key="frame" x="15" y="17.5" width="44.5" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKZ-Bf-B4A">
+                    <rect key="frame" x="318" y="17.5" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c38-m8-rer">
+                    <rect key="frame" x="0.0" y="55" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ojl-Jt-Kaw"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ism-q4-SLK">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="JDO-vw-q6X"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CAM-jA-B6E" firstAttribute="trailing" secondItem="bKZ-Bf-B4A" secondAttribute="trailing" constant="15" id="1me-rC-XN0"/>
+                <constraint firstItem="c38-m8-rer" firstAttribute="leading" secondItem="bZR-en-9vU" secondAttribute="leading" id="1q6-as-jrv"/>
+                <constraint firstItem="bKZ-Bf-B4A" firstAttribute="centerY" secondItem="bZR-en-9vU" secondAttribute="centerY" id="82p-vx-scG"/>
+                <constraint firstItem="HRO-iY-pa8" firstAttribute="leading" secondItem="CAM-jA-B6E" secondAttribute="leading" constant="15" id="BNa-md-vEc"/>
+                <constraint firstItem="HRO-iY-pa8" firstAttribute="centerY" secondItem="bZR-en-9vU" secondAttribute="centerY" id="Umi-rR-Vnj"/>
+                <constraint firstItem="Ism-q4-SLK" firstAttribute="top" secondItem="CAM-jA-B6E" secondAttribute="top" id="W9R-0c-ur7"/>
+                <constraint firstItem="Ism-q4-SLK" firstAttribute="leading" secondItem="bZR-en-9vU" secondAttribute="leading" id="jHl-Ar-3OZ"/>
+                <constraint firstItem="CAM-jA-B6E" firstAttribute="bottom" secondItem="c38-m8-rer" secondAttribute="bottom" id="nph-9b-ZAj"/>
+                <constraint firstAttribute="trailing" secondItem="Ism-q4-SLK" secondAttribute="trailing" id="nxA-1r-3E9"/>
+                <constraint firstItem="CAM-jA-B6E" firstAttribute="trailing" secondItem="c38-m8-rer" secondAttribute="trailing" id="yZ8-1G-XSR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="CAM-jA-B6E"/>
+            <connections>
+                <outlet property="lblDetail" destination="bKZ-Bf-B4A" id="AIs-vB-zfB"/>
+                <outlet property="lblTitle" destination="HRO-iY-pa8" id="5ei-qa-rdk"/>
+            </connections>
+            <point key="canvasLocation" x="-1.5" y="22"/>
+        </view>
+    </objects>
+</document>
