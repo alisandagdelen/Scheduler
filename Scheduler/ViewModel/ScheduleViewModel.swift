@@ -46,7 +46,7 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         return Dynamic(calculateEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency))
     }
     
-    init(schedule: Schedule? = nil, beginDate:Date, endDate:Date, frequency:Date) {
+    init(schedule: Schedule? = nil) {
         self.schedule = schedule ?? Schedule(beginDate: Date(), frequency: .once, endDate: Date())
         self.beginDate = Dynamic(self.schedule.beginDate)
         self.endDate = Dynamic(self.schedule.endDate)
