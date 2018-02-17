@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3BCC1B2020388298008CE0A9 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */; };
+		3BCC1B2620388F65008CE0A9 /* TCellSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */; };
+		3BCC1B2720388F65008CE0A9 /* TCellSchedule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */; };
+		3BCC1B2A20389ABF008CE0A9 /* UITableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2920389ABF008CE0A9 /* UITableViewCellExtension.swift */; };
 		3BDF2D64203850B100FC0266 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF2D63203850B100FC0266 /* AppDelegate.swift */; };
 		3BDF2D66203850B100FC0266 /* ScheduleListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF2D65203850B100FC0266 /* ScheduleListVC.swift */; };
 		3BDF2D69203850B100FC0266 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF2D67203850B100FC0266 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCellSchedule.swift; sourceTree = "<group>"; };
+		3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCellSchedule.xib; sourceTree = "<group>"; };
+		3BCC1B2920389ABF008CE0A9 /* UITableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtension.swift; sourceTree = "<group>"; };
 		3BDF2D60203850B100FC0266 /* Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BDF2D63203850B100FC0266 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BDF2D65203850B100FC0266 /* ScheduleListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListVC.swift; sourceTree = "<group>"; };
@@ -43,6 +49,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BCC1B2120388F1A008CE0A9 /* TCellSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */,
+				3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */,
+			);
+			path = TCellSchedule;
+			sourceTree = "<group>";
+		};
+		3BCC1B2820389AA6008CE0A9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3BCC1B2920389ABF008CE0A9 /* UITableViewCellExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3BDF2D57203850B100FC0266 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +85,7 @@
 		3BDF2D62203850B100FC0266 /* Scheduler */ = {
 			isa = PBXGroup;
 			children = (
+				3BCC1B2820389AA6008CE0A9 /* Extension */,
 				3BDF2D792038513E00FC0266 /* Service */,
 				3BDF2D782038513100FC0266 /* ViewModel */,
 				3BDF2D772038512900FC0266 /* Model */,
@@ -88,6 +112,7 @@
 		3BDF2D762038511D00FC0266 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3BCC1B2120388F1A008CE0A9 /* TCellSchedule */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,6 +203,7 @@
 				3BDF2D6E203850B100FC0266 /* LaunchScreen.storyboard in Resources */,
 				3BDF2D6B203850B100FC0266 /* Assets.xcassets in Resources */,
 				3BDF2D69203850B100FC0266 /* Main.storyboard in Resources */,
+				3BCC1B2720388F65008CE0A9 /* TCellSchedule.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,9 +217,11 @@
 				3BDF2D7B203854DE00FC0266 /* Schedule.swift in Sources */,
 				3BDF2D7F203859BD00FC0266 /* Dynamic.swift in Sources */,
 				3BDF2D66203850B100FC0266 /* ScheduleListVC.swift in Sources */,
+				3BCC1B2620388F65008CE0A9 /* TCellSchedule.swift in Sources */,
 				3BDF2D64203850B100FC0266 /* AppDelegate.swift in Sources */,
 				3BDF2D7D2038591200FC0266 /* ScheduleViewModel.swift in Sources */,
 				3BCC1B2020388298008CE0A9 /* ScheduleVC.swift in Sources */,
+				3BCC1B2A20389ABF008CE0A9 /* UITableViewCellExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
