@@ -13,6 +13,8 @@
 		3BDF2D6B203850B100FC0266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF2D6A203850B100FC0266 /* Assets.xcassets */; };
 		3BDF2D6E203850B100FC0266 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BDF2D6C203850B100FC0266 /* LaunchScreen.storyboard */; };
 		3BDF2D7B203854DE00FC0266 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF2D7A203854DE00FC0266 /* Schedule.swift */; };
+		3BDF2D7D2038591200FC0266 /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF2D7C2038591200FC0266 /* ScheduleViewModel.swift */; };
+		3BDF2D7F203859BD00FC0266 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF2D7E203859BD00FC0266 /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		3BDF2D6D203850B100FC0266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BDF2D6F203850B100FC0266 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BDF2D7A203854DE00FC0266 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		3BDF2D7C2038591200FC0266 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		3BDF2D7E203859BD00FC0266 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		3BDF2D782038513100FC0266 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3BDF2D7C2038591200FC0266 /* ScheduleViewModel.swift */,
+				3BDF2D7E203859BD00FC0266 /* Dynamic.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -180,8 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDF2D7B203854DE00FC0266 /* Schedule.swift in Sources */,
+				3BDF2D7F203859BD00FC0266 /* Dynamic.swift in Sources */,
 				3BDF2D66203850B100FC0266 /* SchedulesVC.swift in Sources */,
 				3BDF2D64203850B100FC0266 /* AppDelegate.swift in Sources */,
+				3BDF2D7D2038591200FC0266 /* ScheduleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
