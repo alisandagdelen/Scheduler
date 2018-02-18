@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B311E2C2039A085005A9E23 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B311E2B2039A085005A9E23 /* DataService.swift */; };
 		3B311E2E2039B4EA005A9E23 /* ScheduleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B311E2D2039B4EA005A9E23 /* ScheduleListViewModel.swift */; };
+		3B80ED5C2039E3E200D47C12 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80ED5B2039E3E200D47C12 /* DateExtension.swift */; };
 		3BCC1B2020388298008CE0A9 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */; };
 		3BCC1B2620388F65008CE0A9 /* TCellSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */; };
 		3BCC1B2720388F65008CE0A9 /* TCellSchedule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		3B311E2B2039A085005A9E23 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		3B311E2D2039B4EA005A9E23 /* ScheduleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListViewModel.swift; sourceTree = "<group>"; };
+		3B80ED5B2039E3E200D47C12 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCellSchedule.swift; sourceTree = "<group>"; };
 		3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCellSchedule.xib; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				3BCC1B2920389ABF008CE0A9 /* UIViewExtension.swift */,
+				3B80ED5B2039E3E200D47C12 /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BCC1B2D2038A23B008CE0A9 /* ViewTitleWithDetail.swift in Sources */,
+				3B80ED5C2039E3E200D47C12 /* DateExtension.swift in Sources */,
 				3BDF2D7B203854DE00FC0266 /* Schedule.swift in Sources */,
 				3BDF2D7F203859BD00FC0266 /* Dynamic.swift in Sources */,
 				3BDF2D66203850B100FC0266 /* ScheduleListVC.swift in Sources */,
