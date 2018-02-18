@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B311E2C2039A085005A9E23 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B311E2B2039A085005A9E23 /* DataService.swift */; };
+		3B311E2E2039B4EA005A9E23 /* ScheduleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B311E2D2039B4EA005A9E23 /* ScheduleListViewModel.swift */; };
 		3BCC1B2020388298008CE0A9 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */; };
 		3BCC1B2620388F65008CE0A9 /* TCellSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */; };
 		3BCC1B2720388F65008CE0A9 /* TCellSchedule.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B311E2B2039A085005A9E23 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		3B311E2D2039B4EA005A9E23 /* ScheduleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListViewModel.swift; sourceTree = "<group>"; };
 		3BCC1B1F20388298008CE0A9 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		3BCC1B2420388F65008CE0A9 /* TCellSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCellSchedule.swift; sourceTree = "<group>"; };
 		3BCC1B2520388F65008CE0A9 /* TCellSchedule.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCellSchedule.xib; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				3BDF2D7C2038591200FC0266 /* ScheduleViewModel.swift */,
 				3BDF2D7E203859BD00FC0266 /* Dynamic.swift */,
+				3B311E2D2039B4EA005A9E23 /* ScheduleListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 		3BDF2D792038513E00FC0266 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				3B311E2B2039A085005A9E23 /* DataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -237,7 +243,9 @@
 				3BDF2D64203850B100FC0266 /* AppDelegate.swift in Sources */,
 				3BDF2D7D2038591200FC0266 /* ScheduleViewModel.swift in Sources */,
 				3BCC1B2020388298008CE0A9 /* ScheduleVC.swift in Sources */,
+				3B311E2E2039B4EA005A9E23 /* ScheduleListViewModel.swift in Sources */,
 				3BCC1B2A20389ABF008CE0A9 /* UIViewExtension.swift in Sources */,
+				3B311E2C2039A085005A9E23 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
