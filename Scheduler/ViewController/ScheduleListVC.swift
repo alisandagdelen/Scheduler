@@ -56,8 +56,8 @@ extension ScheduleListVC:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TCellSchedule.nibName, for: indexPath) as! TCellSchedule
-        cell.lblBeginDate.text = scheduleListViewModel?.schedules[indexPath.row].beginDate.formatted
-        cell.lblEndDate.text = scheduleListViewModel?.schedules[indexPath.row].endDate.formatted
+        cell.lblBeginDate.text = scheduleListViewModel?.sortedSchedules[indexPath.row].beginDate.formatted
+        cell.lblEndDate.text = scheduleListViewModel?.sortedSchedules[indexPath.row].endDate.formatted
         return cell
     }
     
@@ -67,7 +67,7 @@ extension ScheduleListVC:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let selectedSchedule = scheduleListViewModel?.schedules[indexPath.row] {
+            if let selectedSchedule = scheduleListViewModel?.sortedSchedules[indexPath.row] {
                 scheduleListViewModel?.deleteSchedule(selectedSchedule)
                 tblScheduleList.reloadData()
             }
@@ -75,7 +75,7 @@ extension ScheduleListVC:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedSchedule = scheduleListViewModel?.schedules[indexPath.row] {
+        if let selectedSchedule = scheduleListViewModel?.sortedSchedules[indexPath.row] {
             pushScheduleVC(schedule: selectedSchedule)
         }
     }

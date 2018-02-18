@@ -77,9 +77,9 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     // MARK: Service methods
     
     func clearSchedule() {
-        self.schedule.beginDate = Date()
+        self.schedule.beginDate = earliestBeginDate
+        self.schedule.endDate = earliestBeginDate
         self.schedule.frequency = .once
-        controlEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency)
     }
     
     func saveSchedule() {
