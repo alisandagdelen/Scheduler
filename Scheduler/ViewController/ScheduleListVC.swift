@@ -9,10 +9,13 @@
 import UIKit
 
 class ScheduleListVC: UIViewController {
+    // MARK: Model modify methods
+    
     @IBOutlet weak var tblScheduleList: UITableView!
     
-    var scheduleListViewModel:ScheduleListViewModelProtocol? 
+    var scheduleListViewModel: ScheduleListViewModelProtocol?
     
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         scheduleListViewModel = ScheduleListViewModel(dataService: DataService.shared)
@@ -29,9 +32,13 @@ class ScheduleListVC: UIViewController {
         
     }
     
+    // MARK: IB Action methods
+    
     @IBAction func actAddButton(_ sender: Any) {
         pushScheduleVC()
     }
+    
+    // MARK: Navigation methods
     
     func pushScheduleVC(schedule:Schedule? = nil) {
         let scheduleVC = ScheduleVC()
@@ -40,6 +47,8 @@ class ScheduleListVC: UIViewController {
     }
 }
 
+// MARK: TableView methods
+
 extension ScheduleListVC:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scheduleListViewModel?.scheduleCount ?? 0
@@ -47,8 +56,8 @@ extension ScheduleListVC:UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TCellSchedule.nibName, for: indexPath) as! TCellSchedule
-        cell.lblBeginDate.text = "\(scheduleListViewModel?.schedules[indexPath.row].beginDate)"
-        cell.lblEndDate.text = "\(scheduleListViewModel?.schedules[indexPath.row].endDate)"
+        cell.lblBeginDate.text = scheduleListViewModel?.schedules[indexPath.row].beginDate.formatted
+        cell.lblEndDate.text = scheduleListViewModel?.schedules[indexPath.row].endDate.formatted
         return cell
     }
     

@@ -42,11 +42,11 @@ class ScheduleVC: UIViewController {
         datePickerBegin.minimumDate = scheduleViewModel.earliestBeginDate
         
         scheduleViewModel.beginDate.bind { [unowned self] in
-            self.viewBeginDate.lblDetail.text = "\($0)"
+            self.viewBeginDate.lblDetail.text = $0.formatted
         }
         
         scheduleViewModel.endDate.bind { [unowned self] in
-            self.viewEndDate.lblDetail.text = "\($0)"
+            self.viewEndDate.lblDetail.text = $0.formatted
             self.datePickerEnd.date = $0
         }
         

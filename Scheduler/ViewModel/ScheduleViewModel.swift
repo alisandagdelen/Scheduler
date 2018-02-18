@@ -23,7 +23,8 @@ protocol ScheduleViewModelProtocol {
 }
 
 class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
-    
+   
+    // MARK: Properties
     var schedule: Schedule {
         didSet {
             beginDate.value = schedule.beginDate
@@ -43,7 +44,9 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     }
     
     private var dataService:ApiProtocol
-    
+
+    // MARK: Initializer
+
     init(schedule: Schedule? = nil, dataService:ApiProtocol) {
         self.schedule = schedule ?? Schedule(beginDate: Date(), frequency: .once, endDate: Date())
         self.beginDate = Dynamic(self.schedule.beginDate)
@@ -55,6 +58,8 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         self.earliestEndDate = Dynamic(calculateEndDate(beginDate: self.schedule.beginDate, frequency: self.schedule.frequency))
     }
     
+    // MARK: Model modify methods
+
     func updateBeginDate(_ beginDate:Date) {
         controlEndDate(beginDate: beginDate, frequency: schedule.frequency)
         schedule.beginDate = beginDate
@@ -69,6 +74,8 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         schedule.frequency = frequency
     }
     
+    // MARK: Service methods
+    
     func clearSchedule() {
         self.schedule.beginDate = Date()
         self.schedule.frequency = .once
@@ -79,6 +86,8 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         dataService.saveSchedule(self.schedule)
     }
     
+    // MARK: Control methods
+
     private func controlEndDate(beginDate:Date, frequency:Frequency) {
         if beginDate != schedule.beginDate || frequency != schedule.frequency {
             let possibleEndDate = calculateEndDate(beginDate: beginDate, frequency: frequency)

@@ -15,7 +15,8 @@ protocol ScheduleListViewModelProtocol {
 }
 
 class ScheduleListViewModel: NSObject, ScheduleListViewModelProtocol {
-    
+
+    // MARK: Properties
     var schedules: [Schedule] {
         return dataService.getSchedules()
     }
@@ -26,9 +27,13 @@ class ScheduleListViewModel: NSObject, ScheduleListViewModelProtocol {
     
     private var dataService:ApiProtocol
     
+    // MARK: Initializer
+
     init(dataService:ApiProtocol) {
         self.dataService = dataService
     }
+    
+    // MARK: Service methods
     
     func deleteSchedule(_ schedule: Schedule) {
         dataService.deleteSchedule(schedule)
