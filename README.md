@@ -56,6 +56,7 @@ protocol ScheduleViewModelProtocol {
     
     func updateBeginDate(_ beginDate:Date)
     ...
+}
 ``` 
 ``` swift
 init(schedule: Schedule? = nil, dataService:ApiProtocol) {
@@ -63,7 +64,16 @@ init(schedule: Schedule? = nil, dataService:ApiProtocol) {
 }
 ```
 ## Views
+Diffrent methods used for UI like storyboard ,xib files and programmatic ui. In overview page storyboard and custom cell xib used.
+In the schedule page ui created with xib files and mostly programmatically. UIStackView used for dynamic ui changes and ui changes made with animations in generic ui update method.
 
+``` swift
+  func hideAndShowWithAnimation<T:UIView>( elementToShow: T, uiElementsToHide:T...) {
+    ...
+    UIView.animate(withDuration: 0.1) {
+    ...
+}
+```
 ### Storage
 Assignment do not have any dask about storage.So in order not to create unnecessary cost, I stored data in global array and simulated in data service.
 ### Dependencies
