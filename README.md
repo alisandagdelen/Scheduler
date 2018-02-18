@@ -91,7 +91,7 @@ In the schedule page ui created with xib files and mostly programmatically. UISt
 ```
 
 ### Storage
-Assignment do not have any dask about storage.So in order not to create unnecessary cost, I stored data in global array and simulated in data service.
+Assignment do not have any task about storage.So in order not to create unnecessary cost, I stored data in global array and simulated in data service.
 ### Dependencies
 
 There is no deppendency. No pods at all.
