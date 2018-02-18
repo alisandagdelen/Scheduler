@@ -143,7 +143,7 @@ extension ScheduleVC {
         setupStackView()
         hideAllPickers()
         setupConstraints()
-        setupNavigationButtons()
+        setupNavigationItems()
         view.backgroundColor = UIColor.white
     }
     
@@ -200,12 +200,11 @@ extension ScheduleVC {
             ])
     }
     
-    func setupNavigationButtons() {
+    func setupNavigationItems() {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: #selector(actClearButton(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(actBackButton(_:)))
-        
-
+        self.navigationItem.title = "Schedule"
     }
     
     func hideAllPickers() {

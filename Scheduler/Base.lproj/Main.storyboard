@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Schedule List-->
+        <!--Overview-->
         <scene sceneID="jPO-wl-v9h">
             <objects>
                 <viewController id="Slo-2s-H2e" customClass="ScheduleListVC" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pNi-gB-hI3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Schedule List" id="fgW-OM-hca">
+                    <navigationItem key="navigationItem" title="Overview" id="fgW-OM-hca">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Z7r-KH-sHy">
                             <color key="tintColor" red="0.30393195152282715" green="0.60710209608078003" blue="0.99566763639450073" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="1292" y="37"/>
         </scene>
-        <!--ScheduleVC-->
+        <!--Schedule-->
         <scene sceneID="gZJ-7l-RcQ">
             <objects>
-                <viewController id="CWd-LJ-uNM" customClass="ScheduleVC" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Schedule" id="CWd-LJ-uNM" customClass="ScheduleVC" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Wc-F4-S0t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
