@@ -14,7 +14,7 @@ protocol ScheduleViewModelProtocol {
     var endDate: Dynamic<Date> { get }
     var frequency: Dynamic<Frequency> { get }
     var earliestBeginDate: Date { get }
-    var earliestEndDate: Dynamic<Date> { get }
+    var earliestEndDate: Dynamic<Date?> { get }
     
     func updateBeginDate(_ beginDate:Date)
     func updateEndDate(_ endDate:Date)
@@ -25,10 +25,10 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     
     var schedule: Schedule {
         didSet {
-            //TODO
             beginDate.value = schedule.beginDate
             endDate.value = schedule.endDate
             frequency.value = schedule.frequency
+            earliestEndDate.value = calculateEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency)
         }
     }
     
@@ -42,15 +42,16 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         return Date()
     }
     
-    var earliestEndDate: Dynamic<Date> {
-        return Dynamic(calculateEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency))
-    }
-    
+    var earliestEndDate: Dynamic<Date?>
+
     init(schedule: Schedule? = nil) {
         self.schedule = schedule ?? Schedule(beginDate: Date(), frequency: .once, endDate: Date())
         self.beginDate = Dynamic(self.schedule.beginDate)
         self.endDate = Dynamic(self.schedule.endDate)
         self.frequency = Dynamic(self.schedule.frequency)
+        self.earliestEndDate = Dynamic(nil)
+        super.init()
+        self.earliestEndDate = Dynamic(calculateEndDate(beginDate: self.schedule.beginDate, frequency: self.schedule.frequency))
     }
     
     func updateBeginDate(_ beginDate:Date) {
@@ -70,7 +71,8 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     private func controlEndDate(beginDate:Date, frequency:Frequency) {
         if beginDate != schedule.beginDate || frequency != schedule.frequency {
             if schedule.endDate.timeIntervalSince(earliestBeginDate) < 0 {
-                schedule.endDate = earliestEndDate.value
+                guard let earliestEnd = earliestEndDate.value else { return }
+                schedule.endDate = earliestEnd
             }
         }
     }
