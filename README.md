@@ -74,6 +74,22 @@ In the schedule page ui created with xib files and mostly programmatically. UISt
     ...
 }
 ```
+``` swift
+  func setupUI() {
+        
+        setupViews()
+        setupPickers()
+        setupStackView()
+        hideAllPickers()
+        ...
+  }
+  
+ func setupViews() {
+        viewBeginDate = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
+        ...
+ }
+```
+
 ### Storage
 Assignment do not have any dask about storage.So in order not to create unnecessary cost, I stored data in global array and simulated in data service.
 ### Dependencies
