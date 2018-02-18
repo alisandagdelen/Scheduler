@@ -44,7 +44,7 @@ func fillUI() {
 ## Structure
 
 For dealing with spaghetti code Model-View-ViewModel (MVVM) design pattern used for structure. Schedule rules logics, data preparation code for visual presentation, and code listening for Model changes written in ViewModels.
-For dependency injection and easier testability most of the classes created protocol oriented. Also take the models, dataServices in init methods to avoid from dependencies
+For dependency injection and easier testability most of the classes created protocol oriented. Also models, dataServices taken in init methods to avoid from dependencies.
 
 ``` swift
 protocol ScheduleViewModelProtocol {
@@ -64,7 +64,7 @@ init(schedule: Schedule? = nil, dataService:ApiProtocol) {
 }
 ```
 ## Views
-Diffrent methods used for UI like storyboard ,xib files and programmatic ui. In overview page storyboard and custom cell xib used.
+Different methods used for UI like storyboard ,xib files and programmatic ui. In overview page storyboard and custom cell xib used.
 In the schedule page ui created with xib files and mostly programmatically. UIStackView used for dynamic ui changes and ui changes made with animations in generic ui update method.
 
 ``` swift
