@@ -10,10 +10,20 @@ import Foundation
 
 enum Frequency: Int {
     case once = 0
-    case daily = 1
-    case weekly = 7
-    case monthly = 30
+    case daily
+    case weekly
+    case monthly
+
+    static var count: Int { return Frequency.monthly.hashValue + 1 }
     
+    var value: Int {
+        switch self {
+        case .once     : return 0
+        case .daily    : return 1
+        case .weekly   : return 7
+        case .monthly  : return 30
+        }
+    }
     var description: String {
         switch self {
         case .once     : return "Once"
