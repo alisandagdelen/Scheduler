@@ -19,6 +19,7 @@ protocol ScheduleViewModelProtocol {
     func updateBeginDate(_ beginDate:Date)
     func updateEndDate(_ endDate:Date)
     func updateFrequency(_ frequency:Frequency)
+    func clearSchedule()
 }
 
 class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
@@ -68,17 +69,23 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         schedule.frequency = frequency
     }
     
+    func clearSchedule() {
+        self.schedule.beginDate = Date()
+        self.schedule.frequency = .once
+        controlEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency)
+    }
+    
     private func controlEndDate(beginDate:Date, frequency:Frequency) {
         if beginDate != schedule.beginDate || frequency != schedule.frequency {
-            if schedule.endDate.timeIntervalSince(earliestBeginDate) < 0 {
-                guard let earliestEnd = earliestEndDate.value else { return }
-                schedule.endDate = earliestEnd
+            let possibleEndDate = calculateEndDate(beginDate: beginDate, frequency: frequency)
+            if earliestBeginDate.timeIntervalSince(possibleEndDate) < 0  {
+                schedule.endDate = possibleEndDate
             }
         }
     }
     
     private func calculateEndDate(beginDate:Date, frequency:Frequency) -> Date{
-        let calculatedEndDate = Calendar.current.date(byAdding: .day, value: frequency.rawValue, to: beginDate) ?? Date()
+        let calculatedEndDate = Calendar.current.date(byAdding: .day, value: frequency.value, to: beginDate) ?? Date()
         return calculatedEndDate
     }
 }
