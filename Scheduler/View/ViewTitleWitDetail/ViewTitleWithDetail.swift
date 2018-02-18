@@ -20,9 +20,5 @@ class ViewTitleWithDetail: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    func loadNib(){
-        
-    }
    
 }

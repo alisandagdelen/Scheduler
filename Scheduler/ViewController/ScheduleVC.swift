@@ -10,6 +10,7 @@ import UIKit
 
 class ScheduleVC: UIViewController {
     
+    // MARK: Properties
     var stackView: UIStackView!
     
     var viewBeginDate: ViewTitleWithDetail!
@@ -20,13 +21,16 @@ class ScheduleVC: UIViewController {
     var datePickerEnd: UIDatePicker!
     var pickerFrequency: UIPickerView!
     
-    var scheduleViewModel: ScheduleViewModel?
+    var scheduleViewModel: ScheduleViewModelProtocol?
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         fillUI()
     }
+    
+    // MARK: Binding
     
     func fillUI() {
         if !isViewLoaded {
@@ -43,23 +47,70 @@ class ScheduleVC: UIViewController {
         
         scheduleViewModel.endDate.bind { [unowned self] in
             self.viewEndDate.lblDetail.text = "\($0)"
+            self.datePickerEnd.date = $0
         }
         
         scheduleViewModel.earliestEndDate.bind { [unowned self] in
             self.datePickerEnd.minimumDate = $0
         }
         
+        scheduleViewModel.frequency.bind { [unowned self] in
+            self.viewFrequency.lblDetail.text = $0.description
+            self.viewEndDate.isHidden = $0 == .once ? true : false
+            self.datePickerEnd.isHidden = $0 == .once ? true : false
+            
+        }
+        
     }
+    
+    // MARK: Button Actions
     
     @objc func beginDatePickerValueChanged(_ sender:UIDatePicker) {
         scheduleViewModel?.updateBeginDate(sender.date)
     }
     
+    @objc func endDatePickerValueChanged(_ sender:UIDatePicker) {
+        scheduleViewModel?.updateEndDate(sender.date)
+    }
+    
+    @objc func tapBeginDate(_ sender : UITapGestureRecognizer) {
+        hideWithAnimation(elementToShow: datePickerBegin, uiElements: pickerFrequency, datePickerEnd)
+        
+    }
+    
+    @objc func tapEndDate(_ sender : UITapGestureRecognizer) {
+        hideWithAnimation(elementToShow: datePickerEnd, uiElements: pickerFrequency, datePickerBegin)
+    }
+    
+    @objc func tapFrequency(_ sender : UITapGestureRecognizer) {
+        hideWithAnimation(elementToShow: pickerFrequency, uiElements: datePickerBegin, datePickerEnd)
+    }
+    
+    func hideWithAnimation<T:UIView>( elementToShow: T, uiElements:T...) {
+        UIView.animate(withDuration: 0.5) {
+            elementToShow.alpha = elementToShow.isHidden ? 1 : 0
+            elementToShow.isHidden = !elementToShow.isHidden
+            for element in uiElements {
+                element.isHidden = true
+                element.alpha = 0
+            }
+        }
+    }
+    
+    //    func showOrHideSelected<T:UIView>(_ uiElement:T){
+    //        UIView.animate(withDuration: 0.5) {
+    //            uiElement.isHidden = !uiElement.isHidden
+    //            uiElement.alpha = uiElement.isHidden ? 1 : 0
+    //        }
+    //    }
 }
+
 
 // ViewController's UI created programmaticly
 
 extension ScheduleVC {
+    
+    // MARK: UI Setup Methods
     
     func setupUI() {
         
@@ -75,6 +126,15 @@ extension ScheduleVC {
         viewBeginDate = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
         viewFrequency = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
         viewEndDate = ViewTitleWithDetail.fromNib as! ViewTitleWithDetail
+        
+        let beginDateViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapBeginDate(_:)))
+        let endDateViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapEndDate(_:)))
+        let frequencyViewGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapFrequency(_:)))
+        
+        self.viewBeginDate.addGestureRecognizer(beginDateViewGesture)
+        self.viewEndDate.addGestureRecognizer(endDateViewGesture)
+        self.viewFrequency.addGestureRecognizer(frequencyViewGesture)
+        
         viewBeginDate.lblTitle.text = "Begin:"
         viewFrequency.lblTitle.text = "Frequency:"
         viewEndDate.lblTitle.text = "End:"
@@ -95,6 +155,7 @@ extension ScheduleVC {
         pickerFrequency = UIPickerView()
         
         datePickerBegin.addTarget(self, action: #selector(beginDatePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
+        datePickerBegin.addTarget(self, action: #selector(endDatePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
         
         datePickerBegin.datePickerMode = .date
         datePickerEnd.datePickerMode = .date
@@ -115,7 +176,7 @@ extension ScheduleVC {
     }
     
     func hideAllPickers() {
-        //        datePickerBegin.isHidden = true
+        datePickerBegin.isHidden = true
         datePickerEnd.isHidden = true
         pickerFrequency.isHidden = true
     }
