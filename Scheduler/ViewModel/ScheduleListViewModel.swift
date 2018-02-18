@@ -10,6 +10,7 @@ import Foundation
 
 protocol ScheduleListViewModelProtocol {
     var schedules: [Schedule] { get }
+    var sortedSchedules: [Schedule] { get }
     var scheduleCount: Int { get }
     func deleteSchedule(_ schedule:Schedule)
 }
@@ -19,6 +20,12 @@ class ScheduleListViewModel: NSObject, ScheduleListViewModelProtocol {
     // MARK: Properties
     var schedules: [Schedule] {
         return dataService.getSchedules()
+    }
+    
+    var sortedSchedules: [Schedule] {
+        return schedules.sorted() { first, second in
+            first.beginDate.compare(second.beginDate) == .orderedAscending
+        }
     }
     
     var scheduleCount: Int {
