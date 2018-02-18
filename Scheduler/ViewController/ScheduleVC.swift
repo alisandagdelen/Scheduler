@@ -57,8 +57,6 @@ class ScheduleVC: UIViewController {
         scheduleViewModel.frequency.bind { [unowned self] in
             self.viewFrequency.lblDetail.text = $0.description
             self.viewEndDate.isHidden = $0 == .once ? true : false
-            self.datePickerEnd.isHidden = $0 == .once ? true : false
-            
         }
         
     }
@@ -74,40 +72,60 @@ class ScheduleVC: UIViewController {
     }
     
     @objc func tapBeginDate(_ sender : UITapGestureRecognizer) {
-        hideWithAnimation(elementToShow: datePickerBegin, uiElements: pickerFrequency, datePickerEnd)
+        hideAndShowWithAnimation(elementToShow: datePickerBegin, uiElementsToHide: pickerFrequency, datePickerEnd)
         
     }
     
     @objc func tapEndDate(_ sender : UITapGestureRecognizer) {
-        hideWithAnimation(elementToShow: datePickerEnd, uiElements: pickerFrequency, datePickerBegin)
+        hideAndShowWithAnimation(elementToShow: datePickerEnd, uiElementsToHide: pickerFrequency, datePickerBegin)
     }
     
     @objc func tapFrequency(_ sender : UITapGestureRecognizer) {
-        hideWithAnimation(elementToShow: pickerFrequency, uiElements: datePickerBegin, datePickerEnd)
+        hideAndShowWithAnimation(elementToShow: pickerFrequency, uiElementsToHide: datePickerBegin, datePickerEnd)
     }
     
-    func hideWithAnimation<T:UIView>( elementToShow: T, uiElements:T...) {
-        UIView.animate(withDuration: 0.5) {
+    @objc func clearSchedule(_ sender : UIButton) {
+        scheduleViewModel?.clearSchedule()
+    }
+    
+    // MARK: UI Animations
+    func hideAndShowWithAnimation<T:UIView>( elementToShow: T, uiElementsToHide:T...) {
+        for element in uiElementsToHide {
+            element.alpha = 0
+            element.isHidden = true
+        }
+        UIView.animate(withDuration: 0.1) {
             elementToShow.alpha = elementToShow.isHidden ? 1 : 0
             elementToShow.isHidden = !elementToShow.isHidden
-            for element in uiElements {
-                element.isHidden = true
-                element.alpha = 0
-            }
         }
     }
+}
+// MARK: UIPickerView Delegate
+extension ScheduleVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
-    //    func showOrHideSelected<T:UIView>(_ uiElement:T){
-    //        UIView.animate(withDuration: 0.5) {
-    //            uiElement.isHidden = !uiElement.isHidden
-    //            uiElement.alpha = uiElement.isHidden ? 1 : 0
-    //        }
-    //    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Frequency.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard let frequency = Frequency(rawValue: row)?.description else {
+            fatalError("Unknown RecurrenceOption")
+        }
+        return frequency
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard let frequency = Frequency(rawValue: row) else {
+            fatalError("Unknown RecurrenceOption")
+        }
+        scheduleViewModel?.updateFrequency(frequency)
+    }
 }
 
-
 // ViewController's UI created programmaticly
-
 extension ScheduleVC {
     
     // MARK: UI Setup Methods
@@ -119,6 +137,7 @@ extension ScheduleVC {
         setupStackView()
         hideAllPickers()
         setupConstraints()
+        setupNavigationButton()
         view.backgroundColor = UIColor.white
     }
     
@@ -153,9 +172,9 @@ extension ScheduleVC {
         datePickerBegin = UIDatePicker()
         datePickerEnd = UIDatePicker()
         pickerFrequency = UIPickerView()
-        
-        datePickerBegin.addTarget(self, action: #selector(beginDatePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
-        datePickerBegin.addTarget(self, action: #selector(endDatePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
+        pickerFrequency.delegate = self
+        datePickerBegin.addTarget(self, action: #selector(beginDatePickerValueChanged(_:)), for: .valueChanged)
+        datePickerEnd.addTarget(self, action: #selector(endDatePickerValueChanged(_:)), for: .valueChanged)
         
         datePickerBegin.datePickerMode = .date
         datePickerEnd.datePickerMode = .date
@@ -173,6 +192,14 @@ extension ScheduleVC {
             datePickerEnd.heightAnchor.constraint(equalToConstant: 135),
             pickerFrequency.heightAnchor.constraint(equalToConstant: 135)
             ])
+    }
+    
+    func setupNavigationButton() {
+        let navButton = UIButton()
+        navButton.setTitleColor(UIColor.blue, for: .normal)
+        navButton.setTitle("Clear", for: .normal)
+        navButton.addTarget(self, action: #selector(clearSchedule(_:)), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navButton)
     }
     
     func hideAllPickers() {
