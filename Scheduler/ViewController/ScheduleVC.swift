@@ -57,8 +57,8 @@ class ScheduleVC: UIViewController {
         scheduleViewModel.frequency.bind { [unowned self] in
             self.viewFrequency.lblDetail.text = $0.description
             self.viewEndDate.isHidden = $0 == .once ? true : false
+            self.pickerFrequency.selectRow($0.rawValue, inComponent: 0, animated: true)
         }
-        
     }
     
     // MARK: Button Actions
@@ -84,8 +84,14 @@ class ScheduleVC: UIViewController {
         hideAndShowWithAnimation(elementToShow: pickerFrequency, uiElementsToHide: datePickerBegin, datePickerEnd)
     }
     
-    @objc func clearSchedule(_ sender : UIButton) {
+    @objc func actClearButton(_ sender : UIButton) {
         scheduleViewModel?.clearSchedule()
+        datePickerEnd.isHidden = true
+    }
+    
+    @objc func actBackButton(_ sender: UIButton) {
+        scheduleViewModel?.saveSchedule()
+        _ = navigationController?.popViewController(animated: true)
     }
     
     // MARK: UI Animations
@@ -137,7 +143,7 @@ extension ScheduleVC {
         setupStackView()
         hideAllPickers()
         setupConstraints()
-        setupNavigationButton()
+        setupNavigationButtons()
         view.backgroundColor = UIColor.white
     }
     
@@ -194,12 +200,12 @@ extension ScheduleVC {
             ])
     }
     
-    func setupNavigationButton() {
-        let navButton = UIButton()
-        navButton.setTitleColor(UIColor.blue, for: .normal)
-        navButton.setTitle("Clear", for: .normal)
-        navButton.addTarget(self, action: #selector(clearSchedule(_:)), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: navButton)
+    func setupNavigationButtons() {
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: UIBarButtonItemStyle.plain, target: self, action: #selector(actClearButton(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(actBackButton(_:)))
+        
+
     }
     
     func hideAllPickers() {
