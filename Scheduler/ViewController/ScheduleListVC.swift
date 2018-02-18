@@ -12,7 +12,7 @@ class ScheduleListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +20,10 @@ class ScheduleListVC: UIViewController {
 
     }
 
-
+    @IBAction func actAddButton(_ sender: Any) {
+        let scheduleVC = ScheduleVC()
+        scheduleVC.scheduleViewModel = ScheduleViewModel()
+        self.navigationController?.pushViewController(scheduleVC, animated: true)
+    }
 }
 
