@@ -9,7 +9,6 @@
 import Foundation
 
 protocol ScheduleViewModelProtocol {
-    var schedule: Schedule { get }
     var beginDate: Dynamic<Date> { get }
     var endDate: Dynamic<Date> { get }
     var frequency: Dynamic<Frequency> { get }
@@ -20,6 +19,7 @@ protocol ScheduleViewModelProtocol {
     func updateEndDate(_ endDate:Date)
     func updateFrequency(_ frequency:Frequency)
     func clearSchedule()
+    func saveSchedule()
 }
 
 class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
@@ -34,22 +34,22 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
     }
     
     var beginDate: Dynamic<Date>
-    
     var endDate: Dynamic<Date>
-    
     var frequency: Dynamic<Frequency>
+    var earliestEndDate: Dynamic<Date?>
     
     var earliestBeginDate: Date {
         return Date()
     }
     
-    var earliestEndDate: Dynamic<Date?>
-
-    init(schedule: Schedule? = nil) {
+    private var dataService:ApiProtocol
+    
+    init(schedule: Schedule? = nil, dataService:ApiProtocol) {
         self.schedule = schedule ?? Schedule(beginDate: Date(), frequency: .once, endDate: Date())
         self.beginDate = Dynamic(self.schedule.beginDate)
         self.endDate = Dynamic(self.schedule.endDate)
         self.frequency = Dynamic(self.schedule.frequency)
+        self.dataService = dataService
         self.earliestEndDate = Dynamic(nil)
         super.init()
         self.earliestEndDate = Dynamic(calculateEndDate(beginDate: self.schedule.beginDate, frequency: self.schedule.frequency))
@@ -73,6 +73,10 @@ class ScheduleViewModel: NSObject, ScheduleViewModelProtocol {
         self.schedule.beginDate = Date()
         self.schedule.frequency = .once
         controlEndDate(beginDate: schedule.beginDate, frequency: schedule.frequency)
+    }
+    
+    func saveSchedule() {
+        dataService.saveSchedule(self.schedule)
     }
     
     private func controlEndDate(beginDate:Date, frequency:Frequency) {
